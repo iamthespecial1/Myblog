@@ -1,0 +1,158 @@
+/*#log{
+    margin-left: 30%;
+    margin-top: 8%;
+    
+}*/
+#top{
+    /*margin-top: 70px;*/
+    background-image: radial-gradient(circle, #72f8b5, #6ef9a3, #6ffa8f, #75fa78, #7ff95d);
+    width:100%;
+    height:auto;
+}
+#box{
+   margin-top: 10% 
+}
+#row2{
+    
+    margin-left: 10px;
+}
+
+
+table {
+            width: 100%;
+            
+        }
+#tablekeupar{
+border-top: 3px solid #f39c12;
+}
+#chartkeupar{
+    border-top: 3px solid #00a65a;
+}
+#chartkeside{
+    border-top: 3px solid red;
+    border-radius: 0px;
+    height:430px;
+    overflow-y: auto;
+}
+        thead, tbody, tr, td, th { display: block; }
+
+        tr:after {
+            content: ' ';
+            display: block;
+            visibility: hidden;
+            clear: both;
+        }
+
+        thead th {
+            height: 50px;
+
+            /*text-align: left;*/
+        }
+
+        tbody {
+            height: 335px;
+            overflow-y: auto;
+            
+        }
+
+        thead {
+            /* fallback */
+        }
+
+
+        tbody td, thead th {
+            
+            float: left;
+        }
+
+#sum_box h4 {
+    text-align: left;
+    margin-top: 0px;
+    font-size: 30px;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    
+}
+
+
+#sum_box .db:hover {
+    background: #40516f;
+    color: #fff;
+}
+
+
+
+
+#sum_box .db:hover .icon {
+    opacity: 1;
+    color: #999999;
+}
+
+#sum_box .icon {
+    color: #fff;
+    font-size: 55px;
+    margin-top: 7px;
+    float: right;
+}
+
+
+.panel.income.db.mbm{
+        background-color: #5cb85c;
+}
+
+.panel.profit.db.mbm{
+        background-color: #5bc0de;
+}
+
+
+.panel.task.db.mbm{
+        background-color: #f0ad4e;
+}
+#chart{
+    height:100%;
+    width:450px;
+    background: transparent;
+}
+#tablenew
+{
+    border-top: 3px solid #e76100;
+}
+.grow {
+  display: inline-block;
+  transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.grow:hover {
+  transform: scale(1.05);
+}
+
+
+/*@media only screen and (max-width: 350px) {
+    #chart{
+    height:100%px;
+    width:400px;
+    background: transparent;
+}
+}*/
+@media screen and (max-width: 768px) {
+    #chart{
+    height:100%;
+    width:280px;
+    background: transparent;
+}
+#top{
+    /*margin-top: 70px;*/
+    background-image: radial-gradient(circle, #72f8b5, #6ef9a3, #6ffa8f, #75fa78, #7ff95d);
+    width:100%;
+    height:auto;
+}
+#tab{
+    width:auto;
+}
+#box{
+   margin-top: 20% 
+}
+}

@@ -1,0 +1,168 @@
+<!--<div class="jumbotron text-center">
+  <h1>MEAN Authentication App</h1>
+  <p class="lead">Welcome to our custom MEAN authentication application built from scratch </p>
+  <div>
+    <a class="btn btn-primary" [routerLink]="['/register']">Register</a> <a class="btn btn-dark" [routerLink]="['/login']">Login</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <h3>Express Backend</h3>
+    <p>A rock solid Node.js/Express server using Mongoose to organize models and query the database</p>
+  </div>
+  <div class="col-md-4">
+    <h3>Angular-CLI</h3>
+    <p>Angular-CLI to generate components, services and more. Local dev server and easy compilation</p>
+  </div>
+  <div class="col-md-4">
+    <h3>JWT Tokens</h3>
+    <p>Full featured authentication using JSON web tokens. Login and store user data</p>
+  </div>
+</div>-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+  crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Tangerine:bold,bolditalic|Inconsolata:italic|Droid+Sans">
+<div class="pimg1">
+  <div class="ptext" id="p">
+    <!--<p id="p" style="color:black"><b>&lt;h1&gt;hi folks&lt;/h1&gt;</b><span id="span"><b>!</b></span></p>-->
+    <b>&lt;h1&gt;hi folks&lt;/h1&gt;</b><span id="span"><b>!</b></span>
+  </div>
+</div>
+
+<section class="section section-light">
+  <h2>LATEST BLOGS</h2>
+  <div class="container">
+    <div id="card" class="rows col-md-4 col-xs-12 col-sm-12" *ngFor='let b of blog;let i=index'>
+      <p-card styleClass="ui-card-shadow" id="card">
+        <p-header>
+          <a [routerLink]="b.title"><img src="data:image/jpeg;base64,{{b.img}}" alt="Red dot" id="card_img"/></a>
+        </p-header>
+        <div>
+          <a [routerLink]="b.title" style="font-size: 20px;"><b>{{ b.title | uppercase }}</b></a>
+<div> {{b.author}}</div>
+<div> {{b.date}} </div>
+<div> {{b.category}} </div>
+</div>
+</p-card>
+</div>
+</div>
+<button class="btn" style="margin-top: 10px;background-color: transparent;" [routerLink]="['/viewAll']">VIEW ALL</button>
+</section>
+
+<div class="pimg2">
+  <div class="ptext">
+    <span class="border trans">
+        ABOUT ME
+      </span>
+  </div>
+</div>
+
+<section class="section section-dark">
+  <h2></h2>
+  <div class="row">
+    <div class="col-sm-4" id="aboutmepic">
+      <img src="../../assets/img/Untitled.jpg" alt="my_image" id="myimg">
+
+    </div>
+    <div class="col-sm-8">
+      <div class="panel" id="aboutmetext">
+        <h2>ABOUT ME</h2>
+        <div class="panel-body" style="font-family: Bookman;font-size: 30px;">
+<h5> <b>Hard work pays off, Dreams come True</b></h5>
+
+<h5><b>Bad times don't last  but BAD GUYS do</b></h5>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WINNER: <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  <i
+    class="fas fa-star"></i><i class="fas fa-star"></i></h3>
+<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUCCESS:<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  <i
+    class="fas fa-star"></i><i class="fas fa-star"></i></h3>
+<h3>&nbsp;&nbsp;&nbsp;ARROGANT:<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  <i
+    class="fas fa-star"></i>
+</h3>
+<h3>&nbsp;&nbsp;&nbsp;CHARMING:<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  <i
+    class="fas fa-star"></i>
+</h3>
+<h3>CONFIDENT:<i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+  <i
+    class="fas fa-star"></i>
+</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<div class="pimg3">
+  <div class="ptext">
+    <span class="border trans">
+        CONTACT ME
+      </span>
+  </div>
+</div>
+
+<section class="section section-dark">
+  <h2></h2>
+  <div class="row">
+    <div class="col-sm-8" id="table">
+      <div class="card bg-dark text-white">
+        <div class="card-body">
+          <agm-map [latitude]="lat" [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng" [label]="title">
+
+              <agm-info-window>
+                <strong>{{title}}</strong>
+              </agm-info-window>
+
+            </agm-marker>
+          </agm-map>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card bg-dark text-white" id="contact">
+        <p-card title="CONTACT" id="test">
+          <div>
+            <h3>barman.rajat7@gmail.com</h3>
+           <a type=button (click)="onNavigateLinkedIn()" style="cursor:pointer;"><i class="fab fa-linkedin" style="font-size: 30px;"></i></a>
+         <a type=button (click)="onNavigateFacebook()" style="cursor:pointer;"><i class="fab fa-facebook" style="font-size: 30px;"></i></a>
+          <a type=button (click)="onNavigateInsta()" style="cursor:pointer;"><i class="fab fa-instagram" style="font-size: 30px;"></i></a>
+</div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">View Resume</button>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="pimg1">
+  <div class="ptext">
+    <span class="border">
+        DESIGNED BY : ME AND ASHISH BISHT
+      </span>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <pdf-viewer src="../../../assets/Rajat's_Resume.pdf"></pdf-viewer>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

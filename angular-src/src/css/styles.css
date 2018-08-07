@@ -1,0 +1,13 @@
+body{
+   margin-top:70px;
+   width:auto;
+ }
+ @media(max-width: 768px){
+   body{
+     margin-top:180px;
+    }
+ }
+img{
+  height: 300px;
+  width: 100%;
+}

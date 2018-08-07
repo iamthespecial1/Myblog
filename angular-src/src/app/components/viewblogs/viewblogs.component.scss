@@ -1,0 +1,163 @@
+#top{
+	min-height: 700px;
+    //background-image: linear-gradient(to right top, #ffffff, #b9b9b9, #787878, #3c3c3c, #020202);
+	background-image: linear-gradient(to right top, #fdfdfd, #e8e8e8, #d4d4d4, #c0c0c0, #acacac);
+	//background-image: linear-gradient(to right top, #fdfdfd, #fdfdfd, #fefefe, #fefefe, #fffefe);
+	background-size: 100% 100%;
+                height:100%;
+                width:100%;
+                overflow-y: auto;
+}
+p {
+  font-family: Lato;
+}
+$defaultDuration: .3s;
+$primaryColour: #ececec;
+$secondaryColour: #666;
+$shadowColour: rgba(0, 0, 0, .6);
+
+
+
+// As is often the case, some devices/browsers need additional code to get CSS to work
+// in the most desired way. These mixins are used to quickly drop in hacks for each element
+@mixin hideTapHighlightColor() {
+	//Prevent highlight colour when element is tapped
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+@mixin hardwareAccel() {
+	//Improve performance on mobile/tablet devices
+	transform: translateZ(0);
+}
+
+@mixin improveAntiAlias() {
+	//Improve aliasing on mobile/tablet devices
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+
+
+/* Default styles for the demo buttons */
+
+@keyframes hover {
+	50% {
+		transform: translateY(-3px);
+	}
+
+	100% {
+		transform: translateY(-6px);
+	}
+}
+
+@keyframes hover-shadow {
+	0% {
+		transform: translateY(6px);
+		opacity: .4;
+	}
+
+	50% {
+		transform: translateY(3px);
+		opacity: 1;
+	}
+
+
+	100% {
+		transform: translateY(6px);
+		opacity: .4;
+	}
+}
+
+.hover-shadow {
+	display: inline-block;
+	position: relative;
+	transition-duration: $defaultDuration;
+	transition-property: transform;
+
+	@include hideTapHighlightColor();
+	@include hardwareAccel();
+	@include improveAntiAlias();
+
+	&:before {
+		pointer-events: none;
+	  position: absolute;
+	  z-index: -1;
+	  content: '';
+	  top: 100%;
+	  left: 5%;
+	  height: 10px;
+	  width: 90%;
+	  opacity: 0;
+	  background: radial-gradient(ellipse at center, rgba(0,0,0,.35) 0%,rgba(0,0,0,0) 80%); /* W3C */
+		transition-duration: $defaultDuration;
+		transition-property: transform opacity;
+	}
+
+	&:hover {
+		transform: translateY(-6px);
+		animation-name: hover;
+		animation-duration: 1.5s;
+		animation-delay: $defaultDuration;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+		animation-direction: alternate;
+
+		&:before {
+			opacity: .4;
+			transform: translateY(6px);
+			animation-name: hover-shadow;
+			animation-duration: 1.5s;
+			animation-delay: .3s;
+			animation-timing-function: linear;
+			animation-iteration-count: infinite;
+			animation-direction: alternate;
+		}
+	}
+}
+@keyframes pulse {
+	25% {
+		transform: scale(1.1);
+	}
+
+	75% {
+		transform: scale(.9);
+	}
+}
+
+.pulse {
+	display: inline-block;
+
+	@include hideTapHighlightColor();
+	@include hardwareAccel();
+	@include improveAntiAlias();
+
+	&:hover {
+		animation-name: pulse;
+		animation-duration: 3s;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite;
+	}
+}
+#page{
+	margin-top: 5%;
+	margin-left: 40%
+}
+#card{
+	min-height:500px;
+}
+#card_img{
+	height:200px;
+}
+.container{
+	margin-top: 8%
+}
+label{
+  font-weight: 200;
+  font-size: 1.35em;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
