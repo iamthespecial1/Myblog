@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const config = require('../config/database');
+var uniqid = require('uniqid');
 const Blog = require('../models/myblog');
 var multer = require('multer'),
     fs = require('fs');
 var path = require('path');
+var helper = require("./helper")
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './uploads')
@@ -21,86 +20,69 @@ var upload = multer({
     limits: { fileSize: '50mb' }
 })
 
-router.get('/', function (req, res, next) {
-    var ph = [];
+// router.get('/', function (req, res, next) {
+//     var ph = [];
+//     Blog.find()
+//         .sort({ sortdate: -1 })
+//         .exec(function (err, items, next) {
+//             if (err)
+//                 res.send(err);
+//             else {
+//                 let count = 0;
+//                 for (let item of items) {
+//                     fs.readFile(item.img, function (err, content) {
+//                         count++;
+//                         if (err) console.log(err);
+//                         item.img = new Buffer(content).toString('base64');
+//                         //console.log(item.img)
+
+//                         if (count == items.length) {
+//                             res.send(items)
+//                         }
+//                     });
+//                 }
+//                 //res.json(items);
+
+
+//             }
+//         });
+// });
+
+router.get('/getAll', function (req, res) {
     Blog.find()
-        .sort({ sortdate: -1 })
-        .exec(function (err, items, next) {
-        if (err)
-            res.send(err);
-        else {
-            let count = 0;
-            for (let item of items) {
-                fs.readFile(item.img, function (err, content) {
-                    count++;
-                    if (err) console.log(err);
-                    item.img = new Buffer(content).toString('base64');
-                    //console.log(item.img)
-
-                    if (count == items.length) {
-                        res.send(items)
-
-                    }
-                });
-            }
-            //res.json(items);
-
-
-        }
-    });
-});
-
-router.get('/get', function (req, res) {
-    Blog.find()
-        .sort({ sortdate: -1 })
-        .limit(3)
         .exec(function (err, items, next) {
             if (err)
                 res.send(err);
             else {
-                let count = 0;
-                for (let item of items) {
-                    fs.readFile(item.img, function (err, content) {
-                        count++;
-                        if (err) console.log(err);
-                        item.img = new Buffer(content).toString('base64');
-                        //console.log(count)
-
-                        if (count == items.length) {
-                            res.send(items)
-
-                        }
-                    });
-                }
+                res.send(items)
             }
         });
 });
 
-router.get('/:title', function (req, res) {
+router.get('/:id', function (req, res) {
     /*BookApi.getBookById(req.params.id, function(err, book) {
       //res.render('book/edit', {book: book});
       res.json(book);
     });*/
-    Blog.findOne({ title: req.params.title }, function (err, item) {
+    Blog.findById({ _id: req.params.id }, function (err, item) {
 
         if (err)
             res.send(err);
         else
-           // console.log(item);
-        res.send(item);
+            // console.log(item);
+            res.send(item);
 
 
     });
 
 });
 //, upload.single('img')
-router.post('/postdata', upload.single('img'), function (req, res, next) {
+router.post('/postdata', function (req, res, next) {
     let blog = new Blog();
-    blog.title = req.body.title;
+    blog.comment = req.body.comment;
     blog.author = req.body.author;
-    blog.editor = req.body.editor;
-    blog.img = req.file.destination + '/' + req.file.filename;
-    blog.category=req.body.cat;
+    blog.authorName = req.body.authorName;
+    blog.replies = []
     console.log(req);
     blog.save(function (err, blog) {
 
@@ -109,10 +91,84 @@ router.post('/postdata', upload.single('img'), function (req, res, next) {
             res.json("failed to add");
         }
         else {
-
             res.json(blog);
         }
     });
+
+});
+
+router.put('/addReply', function (req, res, next) {
+    let addCom = {
+        _id: uniqid(),
+        author: req.body.author,
+        authorName: req.body.authorName,
+        comment: req.body.comment,
+        replies: []
+    };
+    console.log(req);
+    Blog.findById({ _id: req.body._id }, function (err, result) {
+
+        if (err)
+            res.send(err);
+        else {
+            if (!req.body.replyId) {
+                result.replies.push(addCom)
+
+            }
+            else {
+
+                result.replies = [...helper.findtheId(result, req.body.replyId, addCom)]
+            }
+            result.save(function (err, blog) {
+
+                if (err) {
+                    res.send(err);
+                    res.json("failed to add reply");
+                }
+                else {
+                    res.json(blog);
+                }
+            });
+        }
+
+    });
+
+});
+
+
+router.put('/editMyComment', function (req, res) {
+    if (!req.body.editId) {
+        Blog.findOneAndUpdate({ _id: req.body.id }, { comment: req.body.comment }, { new: true }, function (err, updated) {
+            if (err)
+                res.send(err);
+            else {
+                res.json(updated);
+                console.log(updated)
+            }
+        });
+    }
+    else {
+        Blog.findById({ _id: req.body.id }, function (err, result) {
+
+            if (err)
+                res.send(err);
+            else {
+                let edit = helper.findToEdit(result, req.body.editId, req.body.comment)
+                result.replies = [...edit]
+                result.save(function (err, blog) {
+
+                    if (err) {
+                        res.send(err);
+                        res.json("failed to add reply");
+                    }
+                    else {
+                        res.json(blog);
+                    }
+                });
+            }
+
+        });
+    }
 
 });
 module.exports = router;

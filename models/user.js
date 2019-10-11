@@ -4,26 +4,11 @@ const config = require('../config/database');
 
 // User Schema
 const UserSchema = mongoose.Schema ({
-  name: {
-    type: String
-  },
-  email: {
-    type: String,
-    required: true
-  },
   username: {
     type: String,
     required: true
   },
   password: {
-    type: String,
-    required: true
-  },
-  phone: {
-    type: String,
-    required: true
-  },
-  role: {
     type: String,
     required: true
   }

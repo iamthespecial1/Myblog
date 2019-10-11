@@ -1,0 +1,52 @@
+.w3-panel{
+    padding:0.01em 16px;
+    margin-top:16px;
+    margin-bottom:16px
+}
+.w3-leftbar{
+    border-left:6px solid #ccc!important;
+    border-right:6px solid #ccc!important
+}
+
+    .w3-sand{color:#000!important;background-color:#fdf5e6!important}
+    .w3-serif{font-family:serif}
+
+    .w3-xxlarge{font-size:36px!important}
+
+    .pad-bot{
+        padding-bottom: 10px;
+    }
+
+    .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#0C9;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+        box-shadow: 2px 2px 3px #999;
+    }
+    
+    .my-float{
+        margin-top:22px;
+    }
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #d8d5d5 !important;
+        color: white;
+        text-align: center;
+     }
+
+     .pad-top{
+         padding-top: 10px
+     }
+
+     .hand{
+         cursor: pointer;
+     }
